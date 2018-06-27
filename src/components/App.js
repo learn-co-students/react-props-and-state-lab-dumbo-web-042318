@@ -3,6 +3,7 @@ import React from 'react'
 import Filters from './Filters'
 import PetBrowser from './PetBrowser'
 
+
 class App extends React.Component {
   constructor() {
     super()
@@ -15,7 +16,23 @@ class App extends React.Component {
     }
   }
 
+    componentDidMount() {
+      fetch('/api/pets')
+      .then(response => response.json())
+      .then((pets) => this.setState({ pets }))
+    }
+
+    // onFindPetsClick(){
+    //    this.setState({
+    //      filters: {
+    //        ...this.state.filters,
+    //        type:
+    //      }
+    //    })
+    // }
+
   render() {
+
     return (
       <div className="ui container">
         <header>
@@ -27,7 +44,7 @@ class App extends React.Component {
               <Filters />
             </div>
             <div className="twelve wide column">
-              <PetBrowser />
+              <PetBrowser pets={this.state.pets}/>
             </div>
           </div>
         </div>
