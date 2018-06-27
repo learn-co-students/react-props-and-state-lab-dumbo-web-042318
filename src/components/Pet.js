@@ -2,8 +2,15 @@ import React from 'react'
 
 class Pet extends React.Component {
 
-  onClickAdopt = () => {
-    this.props.onPetAdopt(this.props.pet.id);
+  onAdoptPet = () => {
+    this.props.onAdoptPet(this.props.pet.id);
+  }
+  renderButton = () =>{
+    if(this.props.pet.isAdopted){
+      console.log('adopted');
+        return<button className="ui disabled button">Already adopted</button>
+    }else {
+        return<button className="ui primary button" onClick={this.onAdoptPet}>Adopt pet</button>    }
   }
 
   render() {
@@ -13,7 +20,7 @@ class Pet extends React.Component {
       <div className="card">
         <div className="content">
           <a className="header">
-            {gender === "male" ? '♀' : '♂'}
+            {gender === "female" ? '♀' : '♂'}
             {name}
           </a>
           <div className="meta">
@@ -25,8 +32,8 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui disabled button">Already adopted</button>
-          <button className="ui primary button" onClick={this.onClickAdopt}>Adopt pet</button>
+          {this.renderButton()}
+
         </div>
       </div>
     )
