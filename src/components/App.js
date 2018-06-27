@@ -15,14 +15,13 @@ class App extends React.Component {
     }
   }
 
-  onChangeType = (type) =>{
+  onChangeType = (type) => {
     this.setState({
       filters: {type: type}
     })
   }
-  onFindPetsClick = () =>{
+  onFindPetsClick = () => {
     const type = this.state.filters.type
-    // debugger
 
     switch (type){
       case 'dog':
@@ -56,6 +55,14 @@ class App extends React.Component {
     }
   }
 
+  onPetAdopt = (id) => {
+
+    const adoptedPet = this.state.pets.find(pet => pet.id === id);
+    debugger;
+    return adoptedPet;
+
+  }
+
   render() {
     return (
       <div className="ui container">
@@ -68,7 +75,7 @@ class App extends React.Component {
               <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick}/>
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets}/>
+              <PetBrowser pets={this.state.pets} onPetAdopt={this.onPetAdopt}/>
             </div>
           </div>
         </div>
